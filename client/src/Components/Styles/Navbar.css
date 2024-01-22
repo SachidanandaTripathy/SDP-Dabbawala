@@ -1,0 +1,58 @@
+/* Navbar.css */
+
+.custom-navbar {
+    /* background-image: linear-gradient(to right, #f83600 0%, #f9d423 100%); */
+    /* background-image: linear-gradient(-20deg, #d558c8 0%, #24d292 100%); */
+    background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+    /* background-image: linear-gradient(45deg, #874da2 0%, #c43a30 100%); */
+    /* background-image: linear-gradient(to top, #209cff 0%, #68e0cf 100%); */
+   
+  }
+  
+  .custom-navbar .navbar-brand {
+    font-size: 30px;
+    font-family: cursive;
+    font-weight: bold;
+    margin-right: 90px;
+  }
+  
+  .custom-navbar .navbar-nav .nav-item {
+    font-size: large;
+    margin-right: 50px;
+  }
+  
+  .custom-navbar .navbar-nav .nav-link {
+    color: white;
+    position: relative; 
+  }
+  
+  .custom-navbar .navbar-nav .nav-link:hover {
+    background-color: #673ab7;
+    border: 2px solid white;
+    border-radius: 12px;
+  }
+  
+  .custom-navbar .navbar-toggler {
+    color: white;
+    border-color: white;
+  }
+  
+  button {
+    height: 40px;
+    width: 90px;
+    color: whitesmoke;
+    background-color: rgb(133, 4, 133);
+    border: 2px solid white;
+    border-radius: 12px;
+    margin-right: 40px;
+  }
+  
+  .custom-navbar .navbar-nav .nav-link:hover::before {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #673ab7; 
+    border: 2px solid white;
+    border-radius: 12px;
+  }
+  
