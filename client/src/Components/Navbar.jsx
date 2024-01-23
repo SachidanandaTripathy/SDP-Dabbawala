@@ -1,5 +1,6 @@
 import React from 'react';
 import './Styles/Navbar.css';
+import { NavLink } from 'react-router-dom';
 
 function Navbar() {
     return (
@@ -12,26 +13,32 @@ function Navbar() {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <NavLink to={"/"} className="nav-link">Home</NavLink>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Orders</a>
+                            <NavLink to={"/Orders"} className="nav-link">Orders</NavLink>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Dabbawalas</a>
+                            <NavLink to={"/Dabbawalas"} className="nav-link">Dabbawalas</NavLink>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">DeliveryTracking</a>
+                            <NavLink to={"/DeliveryTracking"} className="nav-link">DeliveryTracking</NavLink>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">DabbawalaCommunity</a>
+                            <NavLink to={"/DabbawalaCommunity"} className="nav-link">DabbawalaCommunity</NavLink>
                         </li>
                     </ul>
-                    <form class="d-flex" >
-                        <button>
-                            Login
-                        </button>
-                    </form>
+                    <div className="d-flex">
+                        <form>
+                            <button className="login-button">Login</button>
+                        </form>
+                        <div className="vertical-line"></div>
+                        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li className="nav-item">
+                                <NavLink to={"/DLogin"} className="nav-link">EmployeeLogin</NavLink>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
