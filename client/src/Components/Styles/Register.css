@@ -1,0 +1,153 @@
+.RegisterForm {}
+
+.RegisterForm h3{
+    text-align: center;
+}
+
+.RegisterForm .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px;
+    background-color: #d2a505;
+    padding: 20px;
+    border-radius: 15px;
+    position: relative;
+}
+
+.RegisterForm .message {
+    color: #355891;
+    font-size: 14px;
+}
+
+.RegisterForm .flex {
+    display: flex;
+    width: 100%;
+    gap: 6px;
+}
+
+.RegisterForm .form label {
+    position: relative;
+}
+
+.RegisterForm .form label .input {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid #355891;
+    border-radius: 5px;
+}
+
+.RegisterForm .form label .input+span {
+    position: absolute;
+    left: 10px;
+    top: 15px;
+    color: #355891;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+}
+
+.RegisterForm .form label .input:placeholder-shown+span {
+    top: 15px;
+    font-size: 0.9em;
+}
+
+.RegisterForm .form label .input:focus+span,
+.form label .input:valid+span {
+    top: 30px;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.RegisterForm .form label .input:valid+span {
+    color: black;
+}
+
+.RegisterForm .input01 {
+    width: 100%;
+    padding: 10px 10px 20px 10px;
+    outline: 0;
+    border: 1px solid #355891;
+    border-radius: 5px;
+}
+
+.RegisterForm .form label .input01+span {
+    position: absolute;
+    left: 10px;
+    top: 50px;
+    color: #355891;
+    font-size: 0.9em;
+    cursor: text;
+    transition: 0.3s ease;
+}
+
+.RegisterForm .form label .input01:placeholder-shown+span {
+    top: 40px;
+    font-size: 0.9em;
+}
+
+.RegisterForm .form label .input01:focus+span,
+.form label .input01:valid+span {
+    top: 50px;
+    font-size: 0.7em;
+    font-weight: 600;
+}
+
+.RegisterForm .form label .input01:valid+span {
+    color: green;
+}
+
+.RegisterForm .fancy {
+    background-color: rgb(133, 4, 133);
+    border: 2px solid #355891;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #355891;
+    cursor: pointer;
+    display: inline-block;
+    font-weight: 390;
+    letter-spacing: 2px;
+    margin: 0;
+    outline: none;
+    overflow: visible;
+    padding: 8px 30px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    text-transform: none;
+    transition: all 0.3s ease-in-out;
+    user-select: none;
+    font-size: 13px;
+}
+
+
+.RegisterForm .fancy .text {
+    font-size: 1.125em;
+    line-height: 1.33333em;
+    padding-left: 2em;
+    display: block;
+    text-align: left;
+    transition: all 0.3s ease-in-out;
+    text-transform: lowercase;
+    text-decoration: none;
+    color: whitesmoke;
+    transform: translateX(30%);
+}
+
+
+.RegisterForm .fancy:hover {
+    color: whitesmoke;
+    background:rgb(224, 150, 12);
+}
+
+.RegisterForm .fancy:hover::before {
+    width: 1.5rem;
+    background: #355891;
+}
+
+.RegisterForm .fancy:hover .text {
+    color: white;
+    padding-left: 1.5em;
+}
+

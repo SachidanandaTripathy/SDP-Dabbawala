@@ -41,8 +41,17 @@ function Navbar() {
                             <div className="vertical-line"></div>
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
-                                    <NavLink to={"/DLogin"} className="nav-link">EmployeeLogin</NavLink>
+                                    <NavLink to={"/DLogin"}  className=" nav-link login-button"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#registerModal">EmployeeLogin</NavLink>
                                 </li>
+                                {/* <button
+                                className="login-button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#registerModal"
+                            >
+                                <i className="fa-solid fa-unlock-keyhole"></i>&nbsp;EmployeeLogin
+                            </button> */}
                             </ul>
                         </div>
                     </div>
