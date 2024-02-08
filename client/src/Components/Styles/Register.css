@@ -1,6 +1,30 @@
-.RegisterForm {}
+.RegisterForm {
+    background-color: var(--thistle);
+    padding: 5px;
+    border: 2px solid black;
+    border-radius: 12px;
+}
 
-.RegisterForm h3{
+
+
+.RegisterForm .roles {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-bottom: 5px;
+}
+
+.RegisterForm .roles button {
+    height: 40px;
+    width: 120px;
+    color: whitesmoke;
+    background-color: rgb(133, 4, 133);
+    border: 2px solid white;
+    border-radius: 12px;
+    margin-right: 10px;
+}
+
+.RegisterForm h3 {
     text-align: center;
 }
 
@@ -11,6 +35,7 @@
     max-width: 500px;
     background-color: #d2a505;
     padding: 20px;
+    border: 2px solid black;
     border-radius: 15px;
     position: relative;
 }
@@ -138,7 +163,7 @@
 
 .RegisterForm .fancy:hover {
     color: whitesmoke;
-    background:rgb(224, 150, 12);
+    background: rgb(224, 150, 12);
 }
 
 .RegisterForm .fancy:hover::before {
@@ -150,4 +175,3 @@
     color: white;
     padding-left: 1.5em;
 }
-

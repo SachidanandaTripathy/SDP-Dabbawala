@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Styles/Login.css';
 import './Styles/Register.css';
 
@@ -35,6 +35,28 @@ function Login() {
 }
 
 function Register() {
+
+  const [userform, setUserform] = useState(true);
+  const [dabbawalaform, setDabbawalaform] = useState(false);
+  const [managerform, setManagerForm] = useState(false);
+
+  const handleDabbaButton = () => {
+    setDabbawalaform(true);
+    setUserform(false);
+    setManagerForm(false);
+  }
+  const handleMangerForm = () => {
+    setManagerForm(true);
+    setDabbawalaform(false);
+    setUserform(false);
+  }
+  const handleUserform = () => {
+    setManagerForm(false);
+    setDabbawalaform(false);
+    setUserform(true);
+  }
+
+
   return (
     <div className="modal fade modal-lg" id="registerModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog">
@@ -43,22 +65,97 @@ function Register() {
             <div className="login">
               <div className="container">
                 <div className='RegisterForm'>
-                  <form className="form">
-                    <h3>Registration Form<hr /></h3>
+                  <h3>Registration Form<hr /></h3>
+                  <div class="roles">
+                    <button onClick={handleUserform}>User</button>
+                    <button onClick={handleDabbaButton}>Dabbawala</button>
+                    <button onClick={handleMangerForm}>Manager</button>
+                  </div>
+                  {
+                    userform &&
+                    <form className="form">
+
+
+                      <div className="flex">
+                        <label>
+                          <input className="input" type="text" placeholder="" required="" />
+                          < span>first name</span>
+                        </label>
+                        <label>
+                          <input className="input" type="text" placeholder="" required="" />
+                          <span>last name</span>
+                        </label>
+                      </div>
+                      <label>
+                        <input className="input" placeholder="" type="tel" required="" />
+                        <span>contact number</span>
+                      </label>
+                      <label>
+                        <input className="input" placeholder="" type="text" required="" />
+                        <span>password</span>
+                      </label>
+                      <label>
+                        <input className="input" placeholder="" type="text" required="" />
+                        <span>confirm password</span>
+                      </label>
+
+                      <button href="#" className="fancy">
+                        <span className="top-key"></span>
+                        <span className="text">submit</span>
+                        <span className="bottom-key-1"></span>
+                        <span className="bottom-key-2"></span>
+                      </button>
+                    </form>
+                  }
+                  {dabbawalaform && <form className="form">
+
+
                     <div className="flex">
                       <label>
                         <input className="input" type="text" placeholder="" required="" />
-                        <span>first name</span>
+                        < span>first name</span>
                       </label>
                       <label>
                         <input className="input" type="text" placeholder="" required="" />
                         <span>last name</span>
                       </label>
                     </div>
-                    {/* <label>
-                      <input className="input" type="email" placeholder="" required="" />
-                      <span>email</span>
-                    </label> */}
+                    <label>
+                      <input className="input" placeholder="" type="tel" required="" />
+                      <span>contact number</span>
+                    </label>
+                    <label>
+                      <input className="input" placeholder="" type="tel" required="" />
+                      <span>Location</span>
+                    </label>
+                    <label>
+                      <input className="input" placeholder="" type="text" required="" />
+                      <span>password</span>
+                    </label>
+                    <label>
+                      <input className="input" placeholder="" type="text" required="" />
+                      <span>confirm password</span>
+                    </label>
+
+                    <button href="#" className="fancy">
+            
+                      <span className="text">submit</span>
+                     
+                    </button>
+                  </form>}
+                  {managerform && <form className="form">
+
+
+                    <div className="flex">
+                      <label>
+                        <input className="input" type="text" placeholder="" required="" />
+                        < span>first name</span>
+                      </label>
+                      <label>
+                        <input className="input" type="text" placeholder="" required="" />
+                        <span>last name</span>
+                      </label>
+                    </div>
                     <label>
                       <input className="input" placeholder="" type="tel" required="" />
                       <span>contact number</span>
@@ -78,7 +175,7 @@ function Register() {
                       <span className="bottom-key-1"></span>
                       <span className="bottom-key-2"></span>
                     </button>
-                  </form>
+                  </form>}
                 </div>
               </div>
             </div>
