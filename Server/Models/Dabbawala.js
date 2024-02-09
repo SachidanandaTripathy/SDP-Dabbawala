@@ -10,7 +10,7 @@ const dabbawalaSchema = new mongoose.Schema({
     required: true,
   },
   contactNumber: {
-    type: String,
+    type: Number,
     required: true,
   },
   location: {
@@ -21,7 +21,10 @@ const dabbawalaSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-
+  role:{
+    type:String,
+    default:"Dabbawala"
+  }
 });
 
 const Dabbawala = mongoose.model('Dabbawala', dabbawalaSchema);
