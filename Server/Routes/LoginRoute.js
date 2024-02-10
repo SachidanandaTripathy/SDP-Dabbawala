@@ -16,7 +16,7 @@ router.post('/login', async (req, res) => {
                 res.status(200).json({
                     status: 'success',
                     message: 'Login successful',
-                    user: { id: user._id, contactNumber: user.contactNumber },
+                    user: {firstName: user.firstName,lastName:user.lastName, contactNumber: user.contactNumber},
                 });
             } else {
                 res.status(401).json({ status: 'error', message: 'Invalid contact number or password' });

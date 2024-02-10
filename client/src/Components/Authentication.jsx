@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../AuthProvider';
+
+
+import 'react-toastify/dist/ReactToastify.css';
 import './Styles/Login.css';
 import './Styles/Register.css';
 
 function Login() {
+
   const [contactNumber, setContactNumber] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
+  const Auth = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -17,20 +25,29 @@ function Login() {
         contactNumber: contactNumber,
         password: password,
       });
+
       console.log(response);
+
       if (response.status === 200) {
-        toast.success("Login done successfully", { position: "bottom-right" });
+        toast.success('Login done successfully', { position: 'bottom-right' });
+
+        console.log(response.data);
+        Auth.login(response.data.user);
+        navigate('/');
       }
     } catch (error) {
       if (error.response.status === 401) {
-        toast.info("Invalid credentials! Please try again", { position: "bottom-right" });
+        toast.info('Invalid credentials! Please try again', { position: 'bottom-right' });
       } else if (error.response.status === 500) {
-        toast.error("Internal server error. Please try again later", { position: "bottom-right" });
+        toast.error('Internal server error. Please try again later', { position: 'bottom-right' });
       }
     }
+
     setContactNumber('');
     setPassword('');
   };
+
+
 
   return (
     <div className="modal fade modal-lg" id="loginrModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -81,6 +98,7 @@ function Login() {
 function Register() {
   const [userform, setUserform] = useState(true);
   const [dabbawalaform, setDabbawalaform] = useState(false);
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -146,6 +164,7 @@ function Register() {
       const response = await axios.post(apiUrl, formData);
       if (response.status == 200) {
         toast.success("User Registration Done Successfully", { position: "bottom-right" });
+        navigate('/');
       }
 
     } catch (error) {
