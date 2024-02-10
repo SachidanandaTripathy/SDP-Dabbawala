@@ -1,10 +1,37 @@
 import React, { useState } from 'react';
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 import './Styles/Login.css';
 import './Styles/Register.css';
-import axios from 'axios';
 
 function Login() {
+  const [contactNumber, setContactNumber] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:12000/api/login', {
+        contactNumber: contactNumber,
+        password: password,
+      });
+      console.log(response);
+      if (response.status === 200) {
+        toast.success("Login done successfully", { position: "bottom-right" });
+      }
+    } catch (error) {
+      if (error.response.status === 401) {
+        toast.info("Invalid credentials! Please try again", { position: "bottom-right" });
+      } else if (error.response.status === 500) {
+        toast.error("Internal server error. Please try again later", { position: "bottom-right" });
+      }
+    }
+    setContactNumber('');
+    setPassword('');
+  };
+
   return (
     <div className="modal fade modal-lg" id="loginrModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog">
@@ -13,20 +40,32 @@ function Login() {
             <div className="login">
               <div className="container">
                 <div className="LoginForm">
-                  <form className="form-control" action="">
+                  <form className="form-control" onSubmit={handleLogin}>
                     <h2 className="title">Login<hr /></h2>
                     <div className="input-field">
-                      <input required="" className="input" type="text" />
-                      <label className="label" htmlFor="input">Enter Email</label>
+                      <input
+                        required
+                        className="input"
+                        type="text"
+                        value={contactNumber}
+                        onChange={(e) => setContactNumber(e.target.value)}
+                      />
+                      <label className="label" htmlFor="input">Enter Contact Number</label>
                     </div>
                     <div className="input-field">
-                      <input required="" className="input" type="password" />
+                      <input
+                        required
+                        className="input"
+                        type="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                      />
                       <label className="label" htmlFor="input">Enter Password</label>
                     </div>
                     <div>
-                      <a>Forgot your password?</a><a>Sign up</a>
+                      <a href="/">Forgot your password?</a>
                     </div>
-                    <button className="submit-btn">Sign In</button>
+                    <button className="submit-btn" type="submit">Sign In</button>
                   </form>
                 </div>
               </div>
@@ -47,7 +86,7 @@ function Register() {
     firstName: '',
     lastName: '',
     contactNumber: '',
-    location: '',
+    location: 'NA',
     password: '',
     confirmPassword: '',
     role: 'customer',
@@ -90,9 +129,9 @@ function Register() {
   const handleUserform = () => {
     setUserform(true);
     setDabbawalaform(false);
-    setFormData({ ...formData, role: 'customer' });
-    setFormData({ ...formData, location: 'NA' })
+    setFormData({ ...formData, role: 'customer', location: 'NA' });
   };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -108,7 +147,7 @@ function Register() {
       if (response.status == 200) {
         toast.success("User Registration Done Successfully", { position: "bottom-right" });
       }
-      
+
     } catch (error) {
       if (error.response) {
         const { status, data } = error.response;

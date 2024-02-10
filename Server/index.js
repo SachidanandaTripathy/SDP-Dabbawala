@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); 
 const registration = require('./Routes/UserRoute');
+const login=require('./Routes/LoginRoute')
 
 const app = express();
 const PORT = 12000;
@@ -22,6 +23,7 @@ app.use(cors());
 
 // Routes
 app.use('/api', registration);
+app.use('/api',login)
 
 
 // Start the server
