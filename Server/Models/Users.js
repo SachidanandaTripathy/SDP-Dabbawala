@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const dabbawalaSchema = new mongoose.Schema({
+const UserSchema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
@@ -15,7 +15,7 @@ const dabbawalaSchema = new mongoose.Schema({
   },
   location: {
     type: String,
-    required: true,
+    required:true,
   },
   password: {
     type: String,
@@ -23,10 +23,10 @@ const dabbawalaSchema = new mongoose.Schema({
   },
   role:{
     type:String,
-    default:"Dabbawala"
+    required:true,
   }
 });
 
-const Dabbawala = mongoose.model('Dabbawala', dabbawalaSchema);
+const User = mongoose.model('Dabbawala', UserSchema);
 
-module.exports = Dabbawala;
+module.exports = User;

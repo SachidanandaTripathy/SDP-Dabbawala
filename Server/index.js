@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); 
-const dabbawalaRoute = require('./Routes/DabbawalaRoute');
+const registration = require('./Routes/UserRoute');
 
 const app = express();
 const PORT = 12000;
@@ -21,7 +21,8 @@ mongoose.connect(mongoURI)
 app.use(cors());
 
 // Routes
-app.use('/api', dabbawalaRoute);
+app.use('/api', registration);
+
 
 // Start the server
 app.listen(PORT, () => {

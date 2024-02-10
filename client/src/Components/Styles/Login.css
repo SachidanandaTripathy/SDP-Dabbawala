@@ -11,11 +11,14 @@
 .LoginForm p {
   text-align: center;
 }
-
+.LoginForm a{
+  display: flex;
+  justify-content: space-around;
+}
 .LoginForm .form-control {
   border: 2px solid rgba(8, 4, 3, 0.934);
   margin: 20px;
-  background-color: #d2a505;
+  background-color: var(--thistle);
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
   width: 400px;
   display: flex;
@@ -27,6 +30,7 @@
 }
 
 .LoginForm .title {
+  text-align: center;
   font-size: 28px;
   font-weight: 800;
 }

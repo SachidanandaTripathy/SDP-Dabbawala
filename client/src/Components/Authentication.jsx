@@ -23,7 +23,9 @@ function Login() {
                       <input required="" className="input" type="password" />
                       <label className="label" htmlFor="input">Enter Password</label>
                     </div>
-                    <a>Forgot your password?</a>
+                    <div>
+                      <a>Forgot your password?</a><a>Sign up</a>
+                    </div>
                     <button className="submit-btn">Sign In</button>
                   </form>
                 </div>
@@ -36,10 +38,10 @@ function Login() {
   );
 }
 
+
 function Register() {
   const [userform, setUserform] = useState(true);
   const [dabbawalaform, setDabbawalaform] = useState(false);
-  const [managerform, setManagerForm] = useState(false);
 
   const [formData, setFormData] = useState({
     firstName: '',
@@ -48,48 +50,77 @@ function Register() {
     location: '',
     password: '',
     confirmPassword: '',
+    role: 'customer',
   });
+
+  const [validationErrors, setValidationErrors] = useState({
+    contactNumber: '',
+    passwordMatch: '',
+  });
+
   const handleInputChange = (e, field) => {
     setFormData({
       ...formData,
       [field]: e.target.value,
     });
+
+    if (field === 'contactNumber') {
+      const isValidNumber = /^\d{10}$/.test(e.target.value);
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        contactNumber: isValidNumber ? '' : 'Phone number should be 10 digits',
+      }));
+    }
+
+    if (field === 'confirmPassword') {
+      setValidationErrors((prevErrors) => ({
+        ...prevErrors,
+        passwordMatch:
+          formData.password === e.target.value ? '' : 'Passwords do not match',
+      }));
+    }
   };
 
   const handleDabbaButton = () => {
     setDabbawalaform(true);
     setUserform(false);
-    setManagerForm(false);
-  };
-
-  const handleMangerForm = () => {
-    setManagerForm(true);
-    setDabbawalaform(false);
-    setUserform(false);
+    setFormData({ ...formData, role: 'Dabbawala' });
   };
 
   const handleUserform = () => {
-    setManagerForm(false);
-    setDabbawalaform(false);
     setUserform(true);
+    setDabbawalaform(false);
+    setFormData({ ...formData, role: 'customer' });
+    setFormData({ ...formData, location: 'NA' })
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (validationErrors.contactNumber || validationErrors.passwordMatch) {
+      toast.info('Validation not satisfied', { position: 'bottom-right' });
+      return;
+    }
+
     try {
-      const apiUrl = 'http://localhost:12000/api/dabbawalaRoutes';
+      const apiUrl = 'http://localhost:12000/api/registration';
       const response = await axios.post(apiUrl, formData);
-      console.log(response.data);
-      if (response.status === 200) {
-        toast.success("Registration Done Successfully", { position: "bottom-right" });
-      } else {
-        toast.info("Error submitting form:", response.statusText, { position: "bottom-right" });
+      if (response.status == 200) {
+        toast.success("User Registration Done Successfully", { position: "bottom-right" });
       }
+      
     } catch (error) {
-      toast.error(error.message)
-      console.error(error.message, { position: "bottom-right" });
+      if (error.response) {
+        const { status, data } = error.response;
+        if (status == 400) {
+          toast.info("User already exists! Try with a new phone number", { position: "bottom-right" });
+        }
+      } else if (error.request) {
+        toast.error("No response from the server", { position: "bottom-right" });
+      }
     }
   };
+
   return (
     <div className="modal fade modal-lg" id="registerModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div className="modal-dialog">
@@ -102,19 +133,18 @@ function Register() {
                   <div className="roles">
                     <button onClick={handleUserform}>User</button>
                     <button onClick={handleDabbaButton}>Dabbawala</button>
-                    <button onClick={handleMangerForm}>Manager</button>
                   </div>
-                  {/* {
-                    userform&&
-                    <form className="form">
+                  {
+                    userform &&
+                    <form className="form" onSubmit={handleSubmit}>
                       <div className="flex">
                         <label>
                           <input
                             className="input"
                             type="text"
                             placeholder=""
-                            required
                             onChange={(e) => handleInputChange(e, 'firstName')}
+                            required
                           />
                           <span>first name</span>
                         </label>
@@ -123,8 +153,8 @@ function Register() {
                             className="input"
                             type="text"
                             placeholder=""
-                            required
                             onChange={(e) => handleInputChange(e, 'lastName')}
+                            required
                           />
                           <span>last name</span>
                         </label>
@@ -134,18 +164,19 @@ function Register() {
                           className="input"
                           placeholder=""
                           type="tel"
-                          required
                           onChange={(e) => handleInputChange(e, 'contactNumber')}
+                          required
                         />
-                        <span>contact number</span>
+                        <span>contactNumber</span>
+                        <h6>{validationErrors.contactNumber}</h6>
                       </label>
                       <label>
                         <input
                           className="input"
                           placeholder=""
                           type="password"
-                          required
                           onChange={(e) => handleInputChange(e, 'password')}
+                          required
                         />
                         <span>password</span>
                       </label>
@@ -154,16 +185,17 @@ function Register() {
                           className="input"
                           placeholder=""
                           type="password"
-                          required
                           onChange={(e) => handleInputChange(e, 'confirmPassword')}
+                          required
                         />
-                        <span>confirm password</span>
+                        <span>Confirm password</span>
+                        <h6>{validationErrors.passwordMatch}</h6>
                       </label>
-                      <button type="button" onClick={handleSubmit} className="fancy">
+                      <button type="submit" className="fancy">
                         <span className="text">submit</span>
                       </button>
                     </form>
-                  } */}
+                  }
                   {dabbawalaform &&
                     <form className="form" onSubmit={handleSubmit}>
                       <div className="flex">
@@ -196,7 +228,8 @@ function Register() {
                           onChange={(e) => handleInputChange(e, 'contactNumber')}
                           required
                         />
-                        <span>contact number</span>
+                        <span>contactNumber</span>
+                        <h5>{validationErrors.contactNumber}</h5>
                       </label>
                       <label>
                         <input
@@ -226,83 +259,14 @@ function Register() {
                           onChange={(e) => handleInputChange(e, 'confirmPassword')}
                           required
                         />
-                        <span>confirm password</span>
+                        <span>confirm paasword</span>
+                        <h6>{validationErrors.passwordMatch}</h6>
                       </label>
                       <button type="submit" className="fancy">
                         <span className="text">submit</span>
                       </button>
                     </form>
                   }
-                  {/* {
-                    managerform&&
-                    <form className="form">
-                      <div className="flex">
-                        <label>
-                          <input
-                            className="input"
-                            type="text"
-                            placeholder=""
-                            required=""
-                            onChange={(e) => handleInputChange(e, 'firstName')}
-                          />
-                          <span>first name</span>
-                        </label>
-                        <label>
-                          <input
-                            className="input"
-                            type="text"
-                            placeholder=""
-                            required=""
-                            onChange={(e) => handleInputChange(e, 'lastName')}
-                          />
-                          <span>last name</span>
-                        </label>
-                      </div>
-                      <label>
-                        <input
-                          className="input"
-                          placeholder=""
-                          type="tel"
-                          required=""
-                          onChange={(e) => handleInputChange(e, 'contactNumber')}
-                        />
-                        <span>contact number</span>
-                      </label>
-                      <label>
-                        <input
-                          className="input"
-                          placeholder=""
-                          type="tel"
-                          required=""
-                          onChange={(e) => handleInputChange(e, 'location')}
-                        />
-                        <span>Location</span>
-                      </label>
-                      <label>
-                        <input
-                          className="input"
-                          placeholder=""
-                          type="password"
-                          required=""
-                          onChange={(e) => handleInputChange(e, 'password')}
-                        />
-                        <span>password</span>
-                      </label>
-                      <label>
-                        <input
-                          className="input"
-                          placeholder=""
-                          type="password"
-                          required=""
-                          onChange={(e) => handleInputChange(e, 'confirmPassword')}
-                        />
-                        <span>confirm password</span>
-                      </label>
-                      <button type="button" onClick={handleSubmit} className="fancy">
-                        <span className="text">submit</span>
-                      </button>
-                    </form>
-                  } */}
                 </div>
               </div>
             </div>

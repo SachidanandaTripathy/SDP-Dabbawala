@@ -1,9 +1,10 @@
 const express = require('express');
-const Dabbawala = require('../Models/Dabbawala');
+const bcrypt = require('bcrypt');
+const User = require('../Models/Users');
 
 const router = express.Router();
 
-router.post('/dabbawalaRoutes', async (req, res) => {
+router.post('/registration', async (req, res) => {
   try {
     const {
       firstName,
@@ -11,20 +12,27 @@ router.post('/dabbawalaRoutes', async (req, res) => {
       contactNumber,
       location,
       password,
+      role,
     } = req.body;
+    
+    const existingUser = await User.findOne({ contactNumber });
 
+    if (existingUser) {
+      return res.status(400).json({ message: 'User with this contact number already exists' });
+    }
+    
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-
-    const newDabbawala = new Dabbawala({
+    const newUser = new User({
       firstName,
       lastName,
       contactNumber,
       location,
-      password,
+      password: hashedPassword,
+      role:role,
     });
 
-
-    await newDabbawala.save();
+    await newUser.save();
 
     res.status(200).json({ message: 'Dabbawala registered successfully' });
   } catch (error) {
