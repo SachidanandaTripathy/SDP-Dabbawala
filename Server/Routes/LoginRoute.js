@@ -5,10 +5,9 @@ const User = require('../Models/Users');
 
 router.post('/login', async (req, res) => {
     const { contactNumber, password } = req.body;
-
+    console.log(contactNumber)
     try {
         const user = await User.findOne({ contactNumber });
-        console.log(user)
         if (user) {
             const match = await bcrypt.compare(password, user.password);
 
@@ -16,7 +15,7 @@ router.post('/login', async (req, res) => {
                 res.status(200).json({
                     status: 'success',
                     message: 'Login successful',
-                    user: {firstName: user.firstName,lastName:user.lastName, contactNumber: user.contactNumber},
+                    user: {firstName: user.firstName,lastName:user.lastName, contactNumber: user.contactNumber,role:user.role},
                 });
             } else {
                 res.status(401).json({ status: 'error', message: 'Invalid contact number or password' });
