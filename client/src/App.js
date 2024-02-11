@@ -6,14 +6,17 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from './Components/Navbar';
 
+
+
+
 import Orders from './Components/Orders';
 import DabbawalaCommunity from './Components/DabbawalaCommunity';
 import Dabbawalas from './Components/Dabbawalas';
 import DeliveryTracking from './Components/DeliveryTracking';
 import Home from './Components/Home';
 import { useAuth } from './AuthProvider';
-import Admin from './Components/Admin';
-import DabbawalaPage from './Components/DabbawalaPage';
+import Admin from './Components/AdminPages/Admin';
+import DabbawalaPage from './Components/DabbawalaPages/DabbawalaPage';
 import { AdminAccess, DabbawalaAccess, CustomerAccess } from './RouteProtection';
 
 
@@ -31,7 +34,7 @@ function App() {
           <Route path="/Orders" element={<CustomerAccess><Orders /></CustomerAccess>} />
           <Route path="/DabbawalaCommunity" element={<CustomerAccess><DabbawalaCommunity /></CustomerAccess>} />
           <Route path="/Dabbawalas" element={<CustomerAccess><Dabbawalas /></CustomerAccess>} />
-          <Route path="/DeliveryTracking" element={<CustomerAccess><Dabbawalas /></CustomerAccess>} />
+          <Route path="/DeliveryTracking" element={<CustomerAccess><DeliveryTracking/></CustomerAccess>} />
 
 
 
