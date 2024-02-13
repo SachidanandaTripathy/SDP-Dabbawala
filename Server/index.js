@@ -1,9 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors'); 
+const dotenv = require("dotenv");
+
+
 const registration = require('./Routes/UserRoute');
 const login=require('./Routes/LoginRoute')
+const getUser=require('./Routes/getUser')
 
+
+dotenv.config();
 const app = express();
 const PORT = 12000;
 
@@ -24,6 +30,7 @@ app.use(cors());
 // Routes
 app.use('/api', registration);
 app.use('/api',login)
+app.use('/api',getUser)
 
 
 // Start the server

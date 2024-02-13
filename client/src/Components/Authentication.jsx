@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { toast } from 'react-toastify';
-import axios from 'axios';
+import axios from '../AxiosInstance';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../AuthProvider';
 
@@ -21,7 +21,7 @@ function Login() {
     e.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:12000/api/login', {
+      const response = await axios.post('/api/login', {
         contactNumber: contactNumber,
         password: password,
       });
@@ -160,7 +160,7 @@ function Register() {
     }
 
     try {
-      const apiUrl = 'http://localhost:12000/api/registration';
+      const apiUrl = '/api/registration';
       const response = await axios.post(apiUrl, formData);
       if (response.status == 200) {
         toast.success("User Registration Done Successfully", { position: "bottom-right" });

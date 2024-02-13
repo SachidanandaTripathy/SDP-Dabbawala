@@ -6,11 +6,12 @@
 .custom-navbar li{
 
 }
-.custom-navbar .navbar-brand {
-  font-size: 30px;
-  font-family: cursive;
-  font-weight: bold;
-  margin-right: 90px;
+.custom-navbar .navbar-brand img{
+  margin-right: 50px; 
+  margin-left: 20px;
+  height: 60px;
+  width: 70px;
+  border-radius: 50%;
 }
 
 .custom-navbar .navbar-nav .nav-item {
