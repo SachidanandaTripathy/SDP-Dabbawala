@@ -2,16 +2,19 @@
 
 .custom-navbar {
   background-image: linear-gradient(-60deg, #ff5858 0%, #f09819 100%);
+  /* position: relative; */
 }
 .custom-navbar li{
 
 }
 .custom-navbar .navbar-brand img{
-  margin-right: 50px; 
+  /* position: absolute; */
+  margin-right: 100px; 
   margin-left: 20px;
-  height: 60px;
-  width: 70px;
+  width: 40px;
+  transform: scale(2);
   border-radius: 50%;
+  mix-blend-mode: multiply;
 }
 
 .custom-navbar .navbar-nav .nav-item {

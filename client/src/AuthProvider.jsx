@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
     console.log("Authprovider");
     console.log(userData);
 
-    const expirationTime = new Date(Date.now() + 10 * 60 * 1000);
+    const expirationTime = new Date(Date.now() + 90 * 60 * 60 * 1000);
     cookies.remove('token');
 
     cookies.set('token', userData.token, { path: '/', expires: expirationTime });
