@@ -1,0 +1,149 @@
+.Request {
+    overflow-x: auto;
+}
+
+.Request table {
+    margin: auto;
+    width: 90%;
+    border-collapse: collapse;
+
+}
+
+.Request th {
+    background-color: green;
+    border-radius: 20px;
+    padding: 12px;
+    text-align: center;
+    color: white;
+
+}
+
+.Request td {
+    border-radius: 20px;
+    padding: 6px;
+    text-align: center;
+    background-color: whitesmoke;
+
+}
+
+.Request tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+
+.Request h1 {
+    color: #333;
+    text-align: center;
+}
+
+
+
+/* css for button */
+.Accept-button {
+    padding: 0.05em 1.3em;
+    height: 45px;
+    border: 2px solid white;
+    outline: none;
+    color: rgb(255, 255, 255);
+    background: #0c0101;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 30px;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+}
+
+.Accept-button:before {
+    content: "";
+    background: -o-linear-gradient(45deg,
+            #100303,
+            rgb(3, 6, 22),
+            #370617ff,
+            #6a040fff,
+            #9d0208ff,
+            #d00000ff,
+            #dc2f02ff,
+            #e85d04ff,
+            #100303,
+            rgb(3, 6, 22),
+            #370617ff,
+            #ff0000);
+    background: linear-gradient(45deg,
+            #b50303,
+            #ff7300,
+            #03071eff,
+            #370617ff,
+            #6a040fff,
+            #9d0208ff,
+            #d00000ff,
+            #dc2f02ff,
+            #100303,
+            rgb(3, 6, 22),
+            #370617ff,
+            #ff0000);
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    -webkit-animation: glowing-Accept-button 20s linear infinite;
+    animation: glowing-Accept-button 20s linear infinite;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 30px;
+}
+
+@-webkit-keyframes glowing-Accept-button {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+@keyframes glowing-Accept-button {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 400% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.Accept-button:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: -o-linear-gradient(45deg, rgb(1, 57, 21), rgb(1, 57, 21));
+    background: linear-gradient(45deg, rgb(1, 57, 21), rgb(1, 57, 21));
+    left: 0;
+    top: 0;
+    border-radius: 30px;
+}
+
+.Accept-button:hover {
+    border: 2px solid;
+}

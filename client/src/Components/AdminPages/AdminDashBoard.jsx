@@ -1,11 +1,12 @@
 import React from 'react'
 
-function Admin() {
+function AdminDashBoard() {
   return (
     <div>
-      <h1>admin page</h1>
+      
     </div>
   )
 }
 
-export default Admin
+export default AdminDashBoard
+

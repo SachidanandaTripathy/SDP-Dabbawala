@@ -1,0 +1,10 @@
+.pending{
+    width: 60%;
+    background-color: rgb(6, 186, 217);
+    text-align: center;
+    margin: auto;
+    padding: 15px;
+    border-radius: 20px;
+    font-size: medium;
+    color: white;
+}

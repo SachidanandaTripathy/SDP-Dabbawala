@@ -7,6 +7,8 @@ const dotenv = require("dotenv");
 const registration = require('./Routes/UserRoute');
 const login=require('./Routes/LoginRoute')
 const getUser=require('./Routes/getUser')
+const requests=require('./Routes/Request')
+const profile=require('./Routes/Profile')
 
 
 dotenv.config();
@@ -29,6 +31,8 @@ app.use(cors());
 app.use('/api', registration);
 app.use('/api',login)
 app.use('/api',getUser)
+app.use('/api',requests)
+app.use('/api',profile)
 
 
 
