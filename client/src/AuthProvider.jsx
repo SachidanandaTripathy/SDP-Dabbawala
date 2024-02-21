@@ -42,7 +42,7 @@ export const AuthProvider = ({ children }) => {
 
   const logout = () => {
     setUser(null);
-    cookies.remove('user');
+    cookies.remove('token');
   };
 
 

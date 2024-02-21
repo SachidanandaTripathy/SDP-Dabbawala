@@ -30,11 +30,11 @@ function App() {
         <ToastContainer />
         <Navbar />
         <Routes>
-          <Route path="/" element={<CustomerAccess><Home /></CustomerAccess>} />
+          <Route path="/" element={<Home />} />
           <Route path="/Orders" element={<CustomerAccess><Orders /></CustomerAccess>} />
           <Route path="/DabbawalaCommunity" element={<CustomerAccess><DabbawalaCommunity /></CustomerAccess>} />
           <Route path="/Dabbawalas" element={<CustomerAccess><Dabbawalas /></CustomerAccess>} />
-          <Route path="/DeliveryTracking" element={<CustomerAccess><DeliveryTracking/></CustomerAccess>} />
+          <Route path="/DeliveryTracking" element={<DeliveryTracking/>} />
 
 
 

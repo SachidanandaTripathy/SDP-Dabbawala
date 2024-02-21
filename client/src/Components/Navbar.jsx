@@ -23,31 +23,31 @@ function Navbar() {
                     </button>
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-                            {/* {user && !user.role == "customer" && (<> */}
-                                <li className="nav-item">
-                                    <NavLink to={"/"} className="nav-link">Home</NavLink>
+                            {(!user||(user && user.role == "customer"))&& (<>
+                                <li className="nav-item nav-button ">
+                                    <NavLink to={"/"} className="nav-link"><i class="fa-solid fa-house"></i>&nbsp; Home</NavLink>
                                 </li>
-                                <li className="nav-item">
-                                    <NavLink to={"/Orders"} className="nav-link">Orders</NavLink>
+                                <li className="nav-item nav-button ">
+                                    <NavLink to={"/Orders"} className="nav-link"><i class="fa-solid fa-pizza-slice"></i>&nbsp;Orders</NavLink>
                                 </li>
-                                <li className="nav-item">
-                                    <NavLink to={"/Dabbawalas"} className="nav-link">Dabbawalas</NavLink>
+                                <li className="nav-item nav-button ">
+                                    <NavLink to={"/Dabbawalas"} className="nav-link"><i class="fa-solid fa-bicycle"></i>&nbsp;Dabbawalas</NavLink>
                                 </li>
-                                <li className="nav-item">
-                                    <NavLink to={"/DeliveryTracking"} className="nav-link">DeliveryTracking</NavLink>
+                                <li className="nav-item nav-button ">
+                                    <NavLink to={"/DeliveryTracking"} className="nav-link"><i class="fa-solid fa-truck"></i>Tracking</NavLink>
                                 </li>
-                                <li className="nav-item">
-                                    <NavLink to={"/DabbawalaCommunity"} className="nav-link">DabbawalaCommunity</NavLink>
+                                <li className="nav-item nav-button ">
+                                    <NavLink to={"/DabbawalaCommunity"} className="nav-link"><i class="fa-solid fa-comments"></i>&nbsp;Community</NavLink>
                                 </li>
-                            {/* </>
-                            )} */}
+                            </>
+                            )}
                             {user && user.role == "Dabbawala" && (
-                                <li className="nav-item">
+                                <li className="nav-item nav-button ">
                                     <NavLink to={"/DPage"} className="nav-link">Dabbawala page</NavLink>
                                 </li>
 
                             )}
-                            {user && user.role == "admin" && (
+                            {user && user.role == "admin nav-button " && (
                                 <li className="nav-item">
                                     <NavLink to={"/admin"} className="nav-link">Admin</NavLink>
                                 </li>
@@ -58,7 +58,7 @@ function Navbar() {
                         <div className="d-flex">
                             {!user &&
                                 <button
-                                    className="login-button"
+                                    className="login-button loginbtn"
                                     data-bs-toggle="modal"
                                     data-bs-target="#loginrModal"
                                 >
@@ -67,7 +67,7 @@ function Navbar() {
                             }
                             {user &&
                                 <button
-                                    className="login-button"
+                                    className="login-button loginbtn"
                                     onClick={handleLogout}
                                 >
                                     <i className="fa-solid fa-unlock-keyhole"></i>&nbsp;Logout
@@ -76,9 +76,9 @@ function Navbar() {
                             <div className="vertical-line"></div>
                             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                                 <li className="nav-item">
-                                    <NavLink to={"/DLogin"} className=" nav-link login-button"
+                                    <button to={"/DLogin"} className="login-button loginbtn"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#registerModal">EmployeeLogin</NavLink>
+                                        data-bs-target="#registerModal"><i class="fa-solid fa-user-plus"></i>&nbsp;Register</button>
                                 </li>
 
                             </ul>
@@ -88,6 +88,7 @@ function Navbar() {
             </nav>
             <Login />
             <Register />
+            <hr/>
         </>
     );
 };

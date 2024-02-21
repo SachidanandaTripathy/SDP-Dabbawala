@@ -12,6 +12,7 @@ export function AdminAccess({ children }) {
     } else {
         return (
             <h6>page not found</h6>
+  
         )
     }
 }
@@ -19,13 +20,14 @@ export function AdminAccess({ children }) {
 export function CustomerAccess({ children }) {
     const auth = useAuth();
     const current_user = auth.user ? auth.user.role : 'customer';
+    console.log(current_user)
     //   const navigate = useNavigate();
 
     if (current_user === 'customer') {
         return <>{children}</>;
     } else {
         return (
-            <h6>page not found</h6>
+            <h6>page not foundjbnjk</h6>
         )
     }
 }
