@@ -33,7 +33,7 @@ function Request() {
           </tr>
         </thead>
         <tbody>
-        {requests.map(request => (
+          {requests.map(request => (
             <tr key={request._id}>
               <td>{request.firstName}</td>
               <td>{request.lastName}</td>
@@ -51,7 +51,7 @@ function Request() {
           ))}
         </tbody>
       </table>
-      
+
     </div>
   );
 }

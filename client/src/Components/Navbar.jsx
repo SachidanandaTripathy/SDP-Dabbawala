@@ -66,7 +66,7 @@ function Navbar() {
                             )}
 
                         </ul>
-
+                                
                         <div className="d-flex">
                             {!user &&
                                 <button
